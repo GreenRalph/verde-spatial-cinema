@@ -12,7 +12,7 @@ const FILMS = {
   'sentensyador': { title: 'SENTENSYADOR', access: 'free', yt: '4eCo3NZvG14',
     subject: 'A man sentenced by everyone who knows him.',
     synopsis: 'A man is sentenced by everyone who knows him. He does not argue. He shrugs, and walks.', themes: ['judgement', 'endurance'] },
-  'project-39-rebuild': { title: 'PROJECT 39: REBUILD', access: 'founding', yt: '',
+  'project-39-rebuild': { title: 'PROJECT 39: REBUILD', access: 'founding', yt: 'yBTwnDkEcOc',
     subject: 'A Filipino man returns to the land after losing his restaurant and his farm’s promise.',
     synopsis: 'He loses everything, mocked by his father, his relatives, his community. He returns to the only thing that still asks nothing of him: the land.', themes: ['loss', 'land', 'rebuilding'] },
   'the-wilderness-original': { title: 'THE WILDERNESS', access: 'founding', yt: 'WOD2cUUMFuQ',
@@ -194,8 +194,8 @@ function filmCard(id, reason, note) {
     c.textAlign = 'left'; c.textBaseline = 'top';
     c.fillStyle = '#E9E7DE'; let ts = 52; do { c.font = `700 ${ts}px Georgia, serif`; ts -= 2; } while (f.title.split(' ').some(w => c.measureText(w).width > cw - 64) && ts > 28);
     wrap(c, f.title, cw - 64).slice(0, 2).forEach((l, i) => c.fillText(l, 32, artH + 40 + i * 58));
+    const titleLines = Math.min(2, wrap(c, f.title, cw - 64).length);
     c.fillStyle = '#C9CCC2'; c.font = '34px Georgia, serif';
-    const titleLines = Math.min(2, wrap(c, f.title, cw - 64).length); c.font = '34px Georgia, serif';
     wrap(c, reason, cw - 64).slice(0, titleLines > 1 ? 3 : 4).forEach((l, i) => c.fillText(l, 32, artH + 60 + titleLines * 58 + i * 42));
     if (note) { c.fillStyle = '#6FB683'; c.font = 'italic 30px Georgia, serif'; wrap(c, note, cw - 64).slice(0, 2).forEach((l, i) => c.fillText(l, 32, ch - 110 + i * 36)); }
     if (hover) { c.fillStyle = '#E9E7DE'; c.font = '700 32px monospace'; c.fillText(f.access === 'free' ? '▶ PINCH TO WATCH' : '◆ PINCH TO OPEN', 32, ch - 60); }
@@ -249,7 +249,7 @@ function surprise() {
 async function askEngine(ids, query) {
   const films = ids.map(id => ({ id, title: FILMS[id].title, subject: FILMS[id].subject, synopsis: FILMS[id].synopsis, themes: FILMS[id].themes, runtime: '', language: [], format: '', access: FILMS[id].access, award: '' }));
   try {
-    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 9000);
+    const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 15000);
     const res = await fetch('/api/engine', { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctrl.signal,
       body: JSON.stringify({ action: 'enrich', userMessage: query, films, context: { household: 'watching alone', isOpenDiscovery: /surprise/i.test(query), conceptNames: [] } }) });
     clearTimeout(t);
