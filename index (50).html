@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VER-DÉ Spatial Cinema</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23080A08'/><path d='M16 18 L32 48 L48 18' fill='none' stroke='%23E9E7DE' stroke-width='7' stroke-linejoin='round'/><rect x='26' y='29' width='12' height='5' fill='%234E8C63'/></svg>">
+  <meta name="description" content="Tell the cinema how you feel. With just your hands, VER-DÉ finds the film for the moment and remembers you.">
+  <style>
+    html, body { margin: 0; height: 100%; background: #080A08; color: #E9E7DE; font-family: Georgia, serif; overflow: hidden; }
+    #enter {
+      position: fixed; right: 24px; top: 48px;
+      padding: 16px 36px; border-radius: 999px; border: 2px solid #6FB683;
+      background: #0F1310; color: #E9E7DE; font: 600 18px system-ui, sans-serif; letter-spacing: .08em; cursor: pointer; z-index: 2;
+    }
+    #enter:disabled { opacity: .5; cursor: default; }
+    #note { position: fixed; left: 0; right: 0; top: 18px; text-align: center; font: 13px system-ui, sans-serif; color: #8E998F; letter-spacing: .12em; z-index: 2; }
+  </style>
+  <script type="importmap">
+    { "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }
+  </script>
+</head>
+<body>
+  <div id="note">VER-DÉ SPATIAL CINEMA · HANDS-FIRST · DESKTOP PREVIEW: CLICK TO SELECT</div>
+  <button id="enter" disabled>CHECKING HEADSET…</button>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
